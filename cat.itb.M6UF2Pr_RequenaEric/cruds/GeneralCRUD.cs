@@ -7,7 +7,7 @@ namespace cat.itb.M6UF2Pr_RequenaEric.cruds;
 
 public class GeneralCrud
 {
-    public void DropTables(List<string> tables)
+    public static void DropTables(List<string> tables)
     {
         using (var conn = new CloudConnection().GetConnection())
         {
@@ -28,13 +28,13 @@ public class GeneralCrud
         }
     }
 
-    public void RunScriptShop()
+    public static void RunScriptShop()
     {
         using (var conn = new CloudConnection().GetConnection())
         {
             try
             {
-                string script = File.ReadAllText("../../MyFiles/shop.sql");
+                string script = File.ReadAllText("../../../fitxers/shop.sql");
                 var cmd = new NpgsqlCommand(script, conn);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Script executed successfully");

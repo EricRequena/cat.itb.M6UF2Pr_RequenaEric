@@ -4,44 +4,44 @@ using cat.itb.M6UF2Pr_RequenaEric;
 
 namespace cat.itb.M6UF2Pr_RequenaEric.cruds;
 
-    public class EmloyeeCRUD
+    public class EmployeeCRUD
     {
-        public Emloyee SelectByid(int Id)
+        public Employee SelectByid(int Id)
         {
-            Emloyee emloyee;
+            Employee employee;
             using (var session = SessionFactoryCloud.Open())
             {
-                emloyee = session.Get<Emloyee>(Id);
+                employee = session.Get<Employee>(Id);
                 session.Close();
             }
-            return emloyee;
+            return employee;
         }
 
-        public IList<Emloyee> SelectAll()
+        public IList<Employee> SelectAll()
         {
-            IList<Emloyee> emloyee;
+            IList<Employee> employee;
             using (var session = SessionFactoryCloud.Open())
             {
-                emloyee = (from c in session.Query<Emloyee>() select c).ToList();
+                employee = (from c in session.Query<Employee>() select c).ToList();
                 session.Close();
             }
-            return emloyee;
+            return employee;
         }
 
-        public void Insert(Emloyee emloyee)
+        public void Insert(Employee employee)
         {
             using (var session = SessionFactoryCloud.Open())
             {
                 using (var tx = session.BeginTransaction())
                 {
-                    session.Save(emloyee);
+                    session.Save(employee);
                     tx.Commit();
-                    Console.WriteLine("Emloyee {0} inserted", emloyee.surname);
+                    Console.WriteLine("Employee {0} inserted", employee.surname);
                     session.Close();
                 }
             }
         }
-        public void Update(Emloyee emloyee)
+        public void Update(Employee employee)
         {
             using (var session = SessionFactoryCloud.Open())
             {
@@ -49,9 +49,9 @@ namespace cat.itb.M6UF2Pr_RequenaEric.cruds;
                 {
                     try
                     {
-                        session.Update(emloyee);
+                        session.Update(employee);
                         tx.Commit();
-                        Console.WriteLine("Emloyee {0} updated", emloyee.surname);
+                        Console.WriteLine("Employee {0} updated", employee.surname);
                     }
                     catch (Exception ex)
                     {
@@ -59,13 +59,13 @@ namespace cat.itb.M6UF2Pr_RequenaEric.cruds;
                         {
                             tx.Rollback();
                         }
-                        throw new Exception("Error updating emloyee : " + ex.Message);
+                        throw new Exception("Error updating Employee : " + ex.Message);
                     }
                 }
                 session.Close();
             }
         }
-        public void Delete(Emloyee employee)
+        public void Delete(Employee employee)
         {
             using (var session = SessionFactoryCloud.Open())
             {
@@ -75,7 +75,7 @@ namespace cat.itb.M6UF2Pr_RequenaEric.cruds;
                     {
                         session.Delete(employee);
                         tx.Commit();
-                        Console.WriteLine("Emloyee {0} deleted", employee.surname);
+                        Console.WriteLine("Employee {0} deleted", employee.surname);
                     }
                     catch (Exception ex)
                     {

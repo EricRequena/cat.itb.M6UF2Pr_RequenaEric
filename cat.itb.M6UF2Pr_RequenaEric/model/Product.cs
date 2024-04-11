@@ -8,14 +8,13 @@ namespace cat.itb.M6UF2Pr_RequenaEric.model
 {
     public class Product
     {
-        internal object supplierno;
-
-        public int id { get; set; }
-        public decimal code { get; set; }
-        public string description { get; set; }
-        public decimal currentstock { get; set; }
-        public decimal minstock { get; set; }
-        public decimal price { get; set; }
-        public int empno { get; set; }
+        public virtual int id { get; set; }
+        public virtual decimal code { get; set; }
+        public virtual string description { get; set; }
+        public virtual decimal currentstock { get; set; }
+        public virtual decimal minstock { get; set; }
+        public virtual decimal price { get; set; }
+        public virtual Employee empno { get; set; }
+        public virtual Supplier supplierno { get; set; }
     }
 }

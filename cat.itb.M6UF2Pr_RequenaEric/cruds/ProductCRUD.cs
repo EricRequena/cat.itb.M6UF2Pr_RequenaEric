@@ -6,6 +6,42 @@ namespace cat.itb.M6UF2Pr_RequenaEric.cruds;
 
 public class ProductCRUD
 {
+    public Product SelectByProductADO(int code)
+    {
+        Product product;
+        using (var session = SessionFactoryCloud.Open())
+        {
+            product = session.CreateCriteria<Product>().Add(Restrictions.Eq("code", code)).UniqueResult<Product>();
+            session.Close();
+        }
+        return product;
+    }
+
+
+    public void UpdateADO(Product product)
+    {
+        using (var session = SessionFactoryCloud.Open())
+        {
+            using (var tx = session.BeginTransaction())
+            {
+                try
+                {
+                    session.Update(product);
+                    tx.Commit();
+                    Console.WriteLine("Product {0} updated", product.code);
+                }
+                catch (Exception ex)
+                {
+                    if (!tx.WasCommitted)
+                    {
+                        tx.Rollback();
+                    }
+                    throw new Exception("Error updating product : " + ex.Message);
+                }
+            }
+            session.Close();
+        }
+    }
 
     public Product SelectByid(int Id)
     {

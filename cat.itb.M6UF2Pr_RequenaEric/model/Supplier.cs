@@ -8,19 +8,19 @@ namespace cat.itb.M6UF2Pr_RequenaEric.model
 {
     public class Supplier
     {
-        internal IEnumerable<object> orders;
+        public virtual int id { get; set; }
+        public virtual string name { get; set; }
+        public virtual string address { get; set; }
+        public virtual string city { get; set; }
+        public virtual string stcode { get; set; }
+        public virtual string zipcode { get; set; }
+        public virtual decimal area { get; set; }
+        public virtual string phone { get; set; }
+        public virtual Product productno { get; set; }
+        public virtual decimal amount { get; set; }
+        public virtual decimal credit { get; set; }
+        public virtual string remark { get; set; }
+        public virtual ISet<Orderp> orders { get; set; }
 
-        public int id { get; set; }
-        public string name { get; set; }
-        public string address { get; set; }
-        public string city { get; set; }
-        public string stcode { get; set; }
-        public string zipcode { get; set; }
-        public decimal area { get; set; }
-        public string phone { get; set; }
-        public int productno { get; set; }
-        public decimal amount { get; set; }
-        public decimal credit { get; set; }
-        public string remark { get; set; }
     }
 }

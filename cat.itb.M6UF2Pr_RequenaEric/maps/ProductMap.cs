@@ -13,17 +13,17 @@ namespace cat.itb.M6UF2Pr_RequenaEric
         public ProductMap()
         {
             Table("product");
-            Id(x => x.id, "id");
-            Map(x => x.code, "code");
-            Map(x => x.description, "description");
-            Map(x => x.currentstock, "currentstock");
-            Map(x => x.minstock, "minstock");
-            Map(x => x.price, "price");
-            References(x => x.supplierno, "supplierno").Not.LazyLoad();
+            Id(x => x.id);
+            Map(x => x.code).Column( "code");
+            Map(x => x.description).Column( "description");
+            Map(x => x.currentstock).Column( "currentstock");
+            Map(x => x.minstock).Column("minstock");
+            Map(x => x.price).Column("price");
+            References(x => x.empno).Column("empno").Not.LazyLoad();
             HasOne(x => x.supplierno)
-                .PropertyRef("productno")
-                .Cascade.All();
-            
+                .PropertyRef(nameof(Supplier.productno))
+                .Not.LazyLoad()
+                .Cascade.AllDeleteOrphan().Fetch.Join();
 
         }
     }

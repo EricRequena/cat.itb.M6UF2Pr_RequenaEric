@@ -14,18 +14,18 @@ namespace cat.itb.M6UF2Pr_RequenaEric
         public SupplierMap()
         {
             Table("supplier");
-            Id(x => x.id, "id");
-            Map(x => x.name, "name");
-            Map(x => x.address, "address");
-            Map(x => x.city, "city");
-            Map(x => x.stcode, "stcode");
-            Map(x => x.zipcode, "zipcode");
-            Map(x => x.area, "area");
-            Map(x => x.phone, "phone");
-            References(x => x.productno, "productno").Not.LazyLoad();
-            Map(x => x.amount, "amount");
-            Map(x => x.credit, "credit");
-            Map(x => x.remark, "remark");
+            Id(x => x.id);
+            Map(x => x.name).Column("name");
+            Map(x => x.address).Column( "address");
+            Map(x => x.city).Column( "city");
+            Map(x => x.stcode).Column( "stcode");
+            Map(x => x.zipcode).Column( "zipcode");
+            Map(x => x.area).Column("area");
+            Map(x => x.phone).Column( "phone");
+            References(x => x.productno).Column( "productno").Not.LazyLoad();
+            Map(x => x.amount).Column( "amount");
+            Map(x => x.credit).Column( "credit");
+            Map(x => x.remark).Column( "remark");
             HasMany(x => x.orders)
                 .KeyColumn("supplierno")
                 .Cascade.AllDeleteOrphan();
